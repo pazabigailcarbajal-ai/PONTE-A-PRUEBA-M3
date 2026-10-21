@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Factorización paso a paso · Módulo 3</title>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f1f5f4;--card:#fff;--ink:#17252e;--mut:#4e616b;--acc:#0b6b77;--on:#fff;--hi:#fbe3a6;--ok:#16794a;--bad:#b4432f;--line:#cfdad9;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){color-scheme:dark;--bg:#0f1a1e;--card:#172429;--ink:#e8f0f0;--mut:#a4b6bb;--acc:#5cc3cf;--on:#06242a;--hi:#4a3d17;--ok:#5fd09a;--bad:#ff9a85;--line:#2b3f46}}
+:root[data-theme=dark]{color-scheme:dark;--bg:#0f1a1e;--card:#172429;--ink:#e8f0f0;--mut:#a4b6bb;--acc:#5cc3cf;--on:#06242a;--hi:#4a3d17;--ok:#5fd09a;--bad:#ff9a85;--line:#2b3f46}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.55 "Atkinson Hyperlegible",Verdana,system-ui,sans-serif}
+.w{max-width:720px;margin:0 auto;padding:16px}
+h1{font-size:1.5rem;margin:.2em 0}h2{font-size:1.3rem;margin:.2em 0}h3{font-size:1.05rem;margin:1em 0 .3em}
+nav{display:flex;gap:8px;margin:12px 0}
+nav button{flex:1}
+button,input{font:inherit;color:inherit}
+button{background:var(--card);border:2px solid var(--line);border-radius:10px;padding:10px 14px;cursor:pointer;min-height:44px}
+button:hover{border-color:var(--acc)}button:focus-visible,input:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+button.on,button.p{background:var(--acc);color:var(--on);border-color:var(--acc);font-weight:700}
+button:disabled{opacity:.5;cursor:default}
+.st{display:flex;justify-content:space-between;align-items:center;width:100%;text-align:left;margin:8px 0;gap:10px}
+.st small{display:block;color:var(--mut)}.stars{color:var(--acc);letter-spacing:2px;white-space:nowrap}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:14px 0}
+.ex{font-size:1.4rem;background:var(--hi);padding:10px 14px;border-radius:10px;margin:8px 0;overflow-x:auto}
+ol{padding-left:1.3em}li{margin:.5em 0}
+input{width:100%;box-sizing:border-box;padding:10px 12px;border:2px solid var(--line);border-radius:10px;background:var(--bg);font-size:1.15rem}
+.keys{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.keys button{padding:4px 12px;min-height:40px}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.ok{color:var(--ok);font-weight:700}.bad{color:var(--bad);font-weight:700}
+.pill{display:inline-block;border:1px solid var(--line);border-radius:99px;padding:0 10px;font-size:.9rem;color:var(--mut)}
+table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid var(--line);padding:6px;text-align:left}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.br{width:120px;height:120px;border-radius:50%;background:var(--acc);margin:16px auto;display:grid;place-items:center;color:var(--on);font-weight:700;text-align:center}
+.br.go{animation:b 8s infinite ease-in-out}
+@keyframes b{0%,100%{transform:scale(.6)}50%{transform:scale(1.1)}}
+@media(prefers-reduced-motion:reduce){.br.go{animation:none}}
+nav{flex-wrap:wrap}nav button{padding:8px 6px;font-size:.95rem}
+.pt{display:inline-block;border:2px solid transparent;border-radius:8px;padding:2px 8px;min-height:0;margin:0 1px;cursor:pointer;font-size:inherit;line-height:1.3}.p-c{background:#6aa9ff55;border-color:#6aa9ff}.p-v{background:#6fd49455;border-color:#6fd494}.p-e{background:#ffb45e55;border-color:#ffb45e;font-size:.65em;vertical-align:super}.p-s{background:#ff8fb355;border-color:#ff8fb3}.p-k{background:#b6b6b655;border-color:#b6b6b6}.lg .pt{font-size:.9rem;vertical-align:baseline}
+.tm{display:inline-block;text-align:center;margin:0 8px}.tm>span{display:block;border-bottom:3px solid var(--acc);padding-bottom:2px}.tm small{display:block;color:var(--mut);font-size:.75rem}
+.fb{background:var(--card);border:2px solid var(--acc);border-radius:12px;padding:10px 14px;text-align:center}.ar{text-align:center;color:var(--acc);font-size:1.3rem}.chip{display:inline-block;border-radius:99px;padding:2px 12px;margin:2px;font-weight:700}.chip.c1{background:var(--hi)}.chip.c2{background:#5cc3cf55}
+ol.sp{list-style:none;padding:0;counter-reset:s}ol.sp li{counter-increment:s;position:relative;background:var(--bg);border-left:6px solid var(--acc);border-radius:10px;padding:10px 12px 10px 52px;margin:10px 0}ol.sp li::before{content:counter(s);position:absolute;left:12px;top:10px;width:28px;height:28px;border-radius:50%;background:var(--acc);color:var(--on);display:grid;place-items:center;font-weight:700}
+.bar{height:8px;background:var(--line);border-radius:9px;overflow:hidden;margin:8px 0}.bar i{display:block;height:100%;background:var(--acc)}
+.gr{width:auto;margin:10px auto}.gr td,.gr th{text-align:center;padding:10px 14px;border:2px solid var(--acc);font-size:1.15rem}.gr th{background:none;color:var(--acc)}.c2{background:#5cc3cf55}.c1{background:var(--hi)}.c0{background:var(--line)}
+.s1{fill:#5cc3cf66;stroke:var(--acc);stroke-width:1.5}.s2{fill:var(--hi);stroke:var(--acc);stroke-width:1.5}.s3{fill:var(--line);stroke:var(--acc);stroke-width:1.5}svg text{fill:var(--ink);font:bold 13px sans-serif;text-anchor:middle;dominant-baseline:middle}
+input[type=range]{padding:0;margin:6px 0 12px}label{display:block}
+@media(max-width:480px){.opts{grid-template-columns:1fr}}
+</style></head><body><div class="w">
+<h1>Módulo 3 · Práctica paso a paso</h1>
+<div class="pill">Representaciones simbólicas y algoritmos · libro pp. 17–176</div>
+<nav><button id="t-r" onclick="home()">Ruta</button><button id="t-j" onclick="games()">Juegos</button><button id="t-p" onclick="parts()">Partes</button><button id="t-l" onclick="lab()">Lab</button><button id="t-e" onclick="exam()">Examen</button></nav>
+<div id="app"></div></div>
+<script>
+const $=s=>document.querySelector(s),ri=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),pick=a=>a[ri(0,a.length-1)],gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a);
+const sup=p=>p>1?`<sup>${p}</sup>`:'',mn=n=>String(n).replace('-','−');
+function poly(ts){let s='';ts.forEach(([c,p])=>{if(!c)return;const a=Math.abs(c),t=(a===1&&p>0?'':a)+(p>0?'x'+sup(p):'');s+=s?(c<0?' − ':' + ')+t:(c<0?'−':'')+t});return s}
+const bin=(p,q)=>`(${poly([[p,1],[q,0]])})`,mono=(k,p)=>(k===1&&!p)?'1':(k===1?'':k)+(p?'x'+sup(p):'');
+let P={};try{P=JSON.parse(localStorage.getItem('m3')||'{}')}catch(e){}
+const save=()=>{try{localStorage.setItem('m3',JSON.stringify(P))}catch(e){}};
+const star=id=>{const n=Math.min(3,P[id]||0);return'★'.repeat(n)+'☆'.repeat(3-n)};
+
+function gFC(){let k,p,c;do{k=pick([2,3,4,5,6]);p=pick([0,1,1,2]);c=pick([[1,2],[2,3],[1,-3],[3,2],[1,5,2],[2,1,-3],[1,-2,3]])}while(c.reduce(gcd)!==1);
+const L=c.length,inner=c.map((v,i)=>[v,L-1-i]),ex=c.map((v,i)=>[k*v,L-1-i+p]),g=mono(k,p);
+return{type:'fact',vis:fcv(g,inner,ex),q:poly(ex),f:x=>k*x**p*c.reduce((s,v,i)=>s+v*x**(L-1-i),0),ans:`${g}(${poly(inner)})`,tip:'Busca el MÁXIMO factor común (número y letra).',steps:[
+`Mira los números: el MCD de ${ex.map(t=>Math.abs(t[0])).join(', ')} es <b>${k}</b>.`,
+p?`Todos los términos tienen x. La menor potencia es x${sup(p)||''} → el factor común completo es <b>${g}</b>.`:`Los términos no comparten letra, así que solo sacamos el número <b>${k}</b>.`,
+`Divide cada término entre ${g}. Queda: ${poly(inner)}.`,
+`Escribe el factor común y, entre paréntesis, lo que quedó: <b>${g}(${poly(inner)})</b>.`,
+`Revisa: multiplica ${g} por cada término del paréntesis y debes recuperar ${poly(ex)}.`]}}
+function gDS(){const a=ri(1,5),b=ri(1,9),A=mono(a,1),ans=bin(a,b)+bin(a,-b);
+return{type:'fact',two:1,vis:grid(a,b,a,-b),q:poly([[a*a,2],[-b*b,0]]),f:x=>a*a*x*x-b*b,ans,tip:'Dos términos que son cuadrados y se RESTAN.',steps:[
+`Son dos cuadrados restándose: ${a*a}x² = (${A})² y ${b*b} = ${b}².`,
+`Saca la raíz cuadrada de cada término: <b>${A}</b> y <b>${b}</b>.`,
+`Escribe dos binomios conjugados (mismos términos; uno con + y otro con −): <b>${ans}</b>.`,
+`Comprueba: al multiplicar, los dos términos de en medio se cancelan.`]}}
+function gTCP(){const a=ri(1,4),b=ri(1,6),s=pick([1,-1]),A=mono(a,1),ans=bin(a,s*b)+'<sup>2</sup>';
+return{type:'fact',two:1,vis:grid(a,s*b,a,s*b),q:poly([[a*a,2],[2*a*b*s,1],[b*b,0]]),f:x=>(a*x+s*b)**2,ans,tip:'Tres términos; los de los extremos son cuadrados.',steps:[
+`Los extremos son cuadrados: ${a*a}x² = (${A})² y ${b*b} = ${b}².`,
+`Comprueba el de en medio: 2·${A}·${b} = ${2*a*b}x. ¡Coincide!`,
+`El signo del término de en medio (${s<0?'−':'+'}) es el signo del binomio.`,
+`Escribe el binomio al cuadrado: <b>${ans}</b>.`]}}
+function gT1(){let m,n;do{m=pick([-9,-8,-7,-6,-5,-4,-3,-2,-1,1,2,3,4,5,6,7,8,9]);n=pick([-9,-8,-7,-6,-5,-4,-3,-2,-1,1,2,3,4,5,6,7,8,9])}while(m+n===0||m===n||Math.abs(m*n)>60);
+const b=m+n,c=m*n,pr=[];for(let d=1;d<=Math.abs(c);d++){if(Math.abs(c)%d)continue;const e=Math.abs(c)/d;if(d>e)continue;c>0?pr.push([d,e],[-d,-e]):pr.push([d,-e],[-d,e])}
+const ans=`(x ${m<0?'−':'+'} ${Math.abs(m)})(x ${n<0?'−':'+'} ${Math.abs(n)})`;
+return{type:'fact',two:1,vis:grid(1,m,1,n),q:poly([[1,2],[b,1],[c,0]]),f:x=>(x+m)*(x+n),ans,tip:'Suma y producto: ¿qué dos números suman b y multiplican c?',steps:[
+`Necesito dos números que <b>multiplicados</b> den ${mn(c)} y <b>sumados</b> den ${mn(b)}.`,
+`Prueba las parejas que multiplican ${mn(c)}:<br>${pr.map(([u,v])=>`${mn(u)} y ${mn(v)} → suman ${mn(u+v)}${u+v===b?' ✔':''}`).join('<br>')}`,
+`Los números son <b>${mn(m)}</b> y <b>${mn(n)}</b>.`,
+`Escribe: <b>${ans}</b>.`]}}
+function gT2(){let p,q,r,s;const N=[-6,-5,-4,-3,-2,-1,1,2,3,4,5,6];do{p=ri(1,4);r=ri(1,3);q=pick(N);s=pick(N)}while(p*r<2||gcd(p,q)!==1||gcd(r,s)!==1||p*s+q*r===0);
+const A=p*r,B=p*s+q*r,C=q*s,u=p*s,v=q*r,ans=bin(r,s)+bin(p,q),bs=bin(r,s);
+return{type:'fact',two:1,vis:grid(p,q,r,s),q:poly([[A,2],[B,1],[C,0]]),f:x=>(r*x+s)*(p*x+q),ans,tip:'Los 5 pasos del libro: a·c, buscar dos números, partir, agrupar, sacar el binomio.',steps:[
+`<b>Paso 1.</b> Multiplica a por c: (${A})(${mn(C)}) = ${mn(A*C)}.`,
+`<b>Paso 2.</b> Busca dos números que sumen ${mn(B)} y multipliquen ${mn(A*C)}. Son <b>${mn(u)}</b> y <b>${mn(v)}</b>. (Factoriza ${Math.abs(A*C)} y prueba parejas.)`,
+`<b>Paso 3.</b> Parte el término de en medio: ${poly([[A,2],[u,1],[v,1],[C,0]])}.`,
+`<b>Paso 4.</b> Saca factor común en cada pareja: ${p===1?'':p}x${bs} ${q<0?'−':'+'} ${Math.abs(q)}${bs}.`,
+`<b>Paso 5.</b> El binomio ${bs} se repite: sácalo como factor común → <b>${ans}</b>.`]}}
+function gEQ(){let a=ri(-8,8)||3,b=ri(-8,8)||-2;const B=-(a+b),C=a*b,mv=C!==0&&Math.random()<.5;
+const gen=poly([[1,2],[B,1],[C,0]]);
+return{type:'sol',sol:[a,b],vis:parab(a,b),q:mv?`${poly([[1,2],[B,1]])} = ${mn(-C)}`:`${gen} = 0`,ans:`x = ${mn(a)} y x = ${mn(b)}`,tip:'Primero igualar a cero.',steps:[
+`Pasa todo a un lado para que quede igual a cero: <b>${gen} = 0</b>.`,
+`Factoriza: <b>${bin(1,-a)}${bin(1,-b)} = 0</b>.`,
+`Si un producto vale 0, alguno de sus factores vale 0: ${poly([[1,1],[-a,0]])} = 0 ó ${poly([[1,1],[-b,0]])} = 0.`,
+`Despeja cada una: <b>x = ${mn(a)}</b> y <b>x = ${mn(b)}</b>.`,
+`Comprueba: sustituye ${mn(a)} en la ecuación original; debe cumplirse la igualdad.`]}}
+function gAPP(){let m=ri(2,12),n=ri(2,12);while(m===n)n=ri(2,12);const P2=2*(m+n),A=m*n,h=m+n;
+return{type:'app',sol:[m,n],vis:rectv(m,n),q:`${pick(['Un patio','Un jardín','Un salón'])} rectangular tiene ${P2} m de perímetro y ${A} m² de área. ¿Cuánto miden sus lados?`,ans:`${m} m y ${n} m`,tip:'Traduce a álgebra: x y y son los lados.',steps:[
+`Dibuja el rectángulo con lados x y y. El perímetro es ${P2}, así que la mitad es x + y = <b>${h}</b>.`,
+`Despeja: y = ${h} − x.`,
+`El área es base por altura: x(${h} − x) = ${A}, es decir, ${h}x − x² = ${A}.`,
+`Pásalo a la forma general: <b>x² − ${h}x + ${A} = 0</b>.`,
+`Busca dos números que multipliquen ${A} y sumen −${h}: son <b>−${m}</b> y <b>−${n}</b>.`,
+`Factoriza: (x − ${m})(x − ${n}) = 0 → x = ${m} y x = ${n}. Esos son los dos lados: <b>${m} m por ${n} m</b>.`]}}
+
+const fcv=(g,inner,ex)=>`<table class="gr"><tr><th></th>${inner.map(t=>`<th>${poly([t])}</th>`).join('')}</tr><tr><th>${g}</th>${ex.map(t=>`<td class="c1">${poly([t])}</td>`).join('')}</tr></table><small>El factor común multiplica a cada término del paréntesis y reconstruye la expresión.</small>`;
+function parab(a,b){let d='';for(let x=-10;x<=10;x+=.5){const y=(x-a)*(x-b);d+=(d?'L':'M')+(150+x*14)+' '+(150-y*1.2)}return `<svg viewBox="0 0 300 240" style="width:100%;max-width:340px;display:block;margin:auto" role="img" aria-label="Parábola que cruza el eje horizontal en ${a} y ${b}"><line x1="0" y1="150" x2="300" y2="150" stroke="var(--mut)"/><line x1="150" y1="0" x2="150" y2="240" stroke="var(--mut)"/><path d="${d}" fill="none" stroke="var(--acc)" stroke-width="3"/>${[a,b].map(r=>`<circle cx="${150+r*14}" cy="150" r="6" fill="var(--bad)"/><text x="${150+r*14}" y="134">${r}</text>`).join('')}</svg><small>Las soluciones son los puntos rojos: donde la curva cruza el eje horizontal.</small>`}
+function rectv(m,n){const u=20;return `<svg viewBox="0 0 ${m*u+60} ${n*u+40}" style="width:100%;max-width:340px;display:block;margin:auto" role="img" aria-label="Rectángulo de ${m} por ${n} metros"><rect class="s2" x="40" y="22" width="${m*u}" height="${n*u}"/><text x="${40+m*u/2}" y="11">${m} m</text><text x="20" y="${22+n*u/2}">${n} m</text><text x="${40+m*u/2}" y="${22+n*u/2}">${m*n} m²</text></svg><small>Perímetro ${2*(m+n)} m y área ${m*n} m².</small>`}
+const cell=(c,pw,k)=>`<td class="c${k}">${poly([[c,pw]])}</td>`;
+function grid(p,q,r,s){const B=p*s+q*r;return `<table class="gr"><tr><th></th><th>${poly([[r,1]])}</th><th>${poly([[s,0]])}</th></tr><tr><th>${poly([[p,1]])}</th>${cell(p*r,2,2)}${cell(p*s,1,1)}</tr><tr><th>${poly([[q,0]])}</th>${cell(q*r,1,1)}${cell(q*s,0,0)}</tr></table><small>Cada celda = fila × columna. Las celdas amarillas (con x) se suman: ${B?poly([[B,1]]):'0, se cancelan'}.</small>`}
+const S=[
+{id:'fc',t:'Factor común',pg:'pp. 148-149',g:gFC,idea:'Busca lo que se repite en todos los términos y sácalo afuera. Es la propiedad distributiva al revés: ab + ac = a(b + c).'},
+{id:'ds',t:'Diferencia de cuadrados',pg:'pp. 149-151',g:gDS,idea:'Si son dos cuadrados que se restan: a² − b² = (a + b)(a − b). Se saca raíz a cada uno.'},
+{id:'tcp',t:'Trinomio cuadrado perfecto',pg:'pp. 151-153',g:gTCP,idea:'a² + 2ab + b² = (a + b)² y a² − 2ab + b² = (a − b)². Siempre comprueba el término de en medio.'},
+{id:'t1',t:'Trinomio x² + bx + c',pg:'pp. 154-155',g:gT1,idea:'Busca dos números que multiplicados den c y sumados den b. Esos números van en los binomios.'},
+{id:'t2',t:'Trinomio ax² + bx + c',pg:'pp. 155-159',g:gT2,idea:'La misma idea con un paso más: multiplica a·c, parte el término de en medio y agrupa.'},
+{id:'eq',t:'Resolver ecuaciones cuadráticas',pg:'pp. 160-162',g:gEQ,idea:'Iguala a cero, factoriza y haz cada factor igual a 0. Normalmente hay dos soluciones.'},
+{id:'app',t:'Aplícalo: problemas reales',pg:'pp. 145, 161, 163',g:gAPP,idea:'Traduce el problema a álgebra, arma la ecuación cuadrática y resuélvela con lo que ya sabes.'}];
+
+function tab(t){['r','j','e','l','p'].forEach(x=>$('#t-'+x).className=x===t?'on':'')}
+function home(){tab('r');$('#app').innerHTML=`<p>Hola, Pao. Una estación a la vez y sin cronómetro. En cada una: <b>idea corta → ejemplo paso a paso → práctica</b>. Con 3 aciertos ganas ★★★.</p>`+S.map((s,i)=>`<button class="st" onclick="openSt(${i})"><span><b>${['🧲','🪞','🔲','🔍','🧩','🎯','🏠'][i]} ${i+1}. ${s.t}</b><small>Libro ${s.pg}</small></span><span class="stars">${star(s.id)}</span></button>`).join('')+`<div class="card"><h3>Resumen de los 5 tipos</h3><table><tr><th>Tipo</th><th>Se factoriza así</th></tr><tr><td>Factor común</td><td>ax + ay = a(x + y)</td></tr><tr><td>Diferencia de cuadrados</td><td>x² − y² = (x + y)(x − y)</td></tr><tr><td>Trinomio cuadrado perfecto</td><td>x² ± 2xy + y² = (x ± y)²</td></tr><tr><td>x² + bx + c</td><td>(x + n)(x + m)</td></tr><tr><td>ax² + bx + c</td><td>(mx + n)(px + q)</td></tr></table></div>`}
+
+let cur,ex,pr,exN,prN,solved;
+const list=(p,n)=>`<div class="bar"><i style="width:${Math.round(100*n/p.steps.length)}%"></i></div><ol class="sp">${p.steps.slice(0,n).map(s=>`<li>${s}</li>`).join('')}</ol>`;
+function openSt(i){cur=S[i];ex=cur.g();pr=cur.g();exN=prN=0;solved=0;tab('r');draw()}
+function draw(){const a=pr.ask?pr.ask:pr.type==='fact'?'Factoriza esta expresión:':pr.type==='sol'?'Resuelve. Escribe las dos soluciones separadas por coma (ejemplo: 3, −2):':'Escribe las medidas de los lados separadas por coma (ejemplo: 4, 9):';
+$('#app').innerHTML=`<button onclick="home()">← Ruta</button><div class="card"><h2>${cur.t} <span class="stars" id="stars">${star(cur.id)}</span></h2><span class="pill">Libro ${cur.pg}</span><p>${cur.idea}</p><button onclick="say()">🔊 Escuchar</button> <small class="pill">${ex.tip}</small></div>
+<div class="card"><h3>1 · Mira un ejemplo</h3><p class="ex">${ex.q}</p><div id="exs"></div><div class="row"><button class="p" id="exb" onclick="exNext()">Mostrar el paso 1</button><button onclick="exAll()">Ver todo</button><button onclick="newEx()">🔄 Otro ejemplo</button></div></div>
+<div class="card"><h3>2 · Tu turno</h3><p>${a}</p><p class="ex">${pr.q}</p><input id="ans" autocomplete="off" aria-label="Tu respuesta" placeholder="${pr.ph?pr.ph:pr.type==='fact'?'Escribe con x^2 para x². Ej: (x+2)(x+3)':'Ej: 3, -2'}" onkeydown="if(event.key==='Enter')chk()">
+<div class="keys">${['x','^2','(',')','+','-','/',','].map(k=>`<button onclick="ins('${k}')">${k}</button>`).join('')}</div>
+<div class="row"><button class="p" onclick="chk()">Revisar</button><button onclick="hint()" id="hb">💡 Pista (paso a paso)</button><button onclick="nextPr()">Otro problema</button></div><div id="msg" aria-live="polite"></div><div id="prs"></div></div>`}
+function exAll(){exN=ex.steps.length-1;exNext()}
+function newEx(){ex=cur.g();exN=0;prN=0;draw()}
+function say(){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(cur.idea);u.lang='es-MX';speechSynthesis.speak(u)}catch(e){}}
+function ins(k){const e=$('#ans');const a=e.selectionStart??e.value.length;e.setRangeText(k,a,e.selectionEnd??a,'end');e.focus()}
+function exNext(){if(exN<ex.steps.length)exN++;$('#exs').innerHTML=list(ex,exN)+(exN===ex.steps.length?`<p class="ok">Resultado: ${ex.ans}</p>${ex.vis?'<h3>Míralo en un dibujo</h3>'+ex.vis:''}`:'');$('#exb').textContent=exN<ex.steps.length?`Mostrar el paso ${exN+1}`:'Listo ✔';$('#exb').disabled=exN>=ex.steps.length}
+function hint(){if(prN<pr.steps.length)prN++;$('#prs').innerHTML=list(pr,prN)+(prN===pr.steps.length?`<p>Respuesta: <b>${pr.ans}</b>. Ahora intenta con otro problema.</p>${pr.vis||''}`:'')}
+function nextPr(){pr=cur.g();prN=0;solved=0;draw();exN&&0}
+function parse(v){let s=v.replace(/−/g,'-').replace(/\s+/g,'').toLowerCase().replace(/(\d|x|\))(?=\(|x)/g,'$1*').replace(/(x|\d+|\([^()]*\))\^(\d+)/g,'($1**$2)').replace(/\^/g,'**');if(!/^[0-9x+\-*()\/.]+$/.test(s))throw 0;return Function('x','return '+s)}
+function judge(p,v){if(!v.trim())return[0,'Escribe tu respuesta primero.'];
+if(p.type==='fact'||p.type==='poly'){if(p.type==='fact'&&!v.includes('('))return[0,'Todavía falta factorizar: tu respuesta debe tener paréntesis. Usa la pista.'];
+if(p.two&&!/\)\s*(\(|\^)/.test(v))return[0,'Aquí van dos binomios, por ejemplo (x+2)(x+3), o un binomio al cuadrado.'];
+let g;try{g=parse(v);g(1)}catch(e){return[0,'No entendí lo que escribiste. Revisa los paréntesis y usa x^2 para x².']}
+const ok=[2,3,-1,.5,-4,7].every(x=>Math.abs(g(x)-p.f(x))<1e-6);return ok?[1,'¡Correcto! Está bien factorizado.']:[0,'Todavía no. Multiplica tu respuesta: debe dar la expresión original. Usa la pista si quieres.']}
+const t=v.replace(/−/g,'-').split(/[,;]|\sy\s/).map(z=>z.trim()).filter(Boolean);let vals;
+try{vals=t.map(z=>{if(!/^[-+]?\d+(\.\d+)?(\/\d+)?$/.test(z))throw 0;return Function('return '+z)()})}catch(e){return[0,'Escribe solo números separados por coma, por ejemplo: 3, -2.']}
+if(p.ord)return vals.length===p.sol.length&&vals.every((x,i)=>Math.abs(x-p.sol[i])<1e-9)?[1,'¡Correcto!']:[0,'Todavía no. Revisa el orden y los pasos con la pista.'];const A=[...new Set(vals)].sort((a,b)=>a-b),B=[...new Set(p.sol)].sort((a,b)=>a-b);
+return A.length===B.length&&A.every((x,i)=>Math.abs(x-B[i])<1e-9)?[1,'¡Correcto!']:[0,'Todavía no. Comprueba sustituyendo en la ecuación o usa la pista.']}
+function chk(){const[r,m]=judge(pr,$('#ans').value);$('#msg').innerHTML=`<p class="${r?'ok':'bad'}">${m}${r?` <br><small>Respuesta del libro: ${pr.ans}</small>`:''}</p>`;
+if(r&&!solved){solved=1;P[cur.id]=(P[cur.id]||0)+1;save();$('#stars').textContent=star(cur.id)}}
+
+let streak=0,gm;
+function games(){tab('j');$('#app').innerHTML=`<p>Juegos para entrenar sin presión. No hay tiempo ni puntos que comparar.</p><div class="card"><h3>Suma y producto</h3><p>Es la habilidad clave de los trinomios. Elige la pareja que cumple las dos condiciones.</p><div id="g1"></div></div><div class="card"><h3>¿Qué tipo de factorización es?</h3><div id="g2"></div></div>`;g1();g2()}
+function g1(){let m,n;const N=[-9,-8,-7,-6,-5,-4,-3,-2,-1,1,2,3,4,5,6,7,8,9];do{m=pick(N);n=pick(N)}while(m===n||m+n===0);
+const s=m+n,p=m*n,key=a=>[...a].sort((x,y)=>x-y).join(','),o=new Map([[key([m,n]),[m,n]]]);
+[[-m,-n],[m,-n],[n,-m],[m+1,n-1],[m,n+1],[-m,n]].forEach(a=>{const k=key(a);if(o.size<4&&!o.has(k)&&!(a[0]+a[1]===s&&a[0]*a[1]===p))o.set(k,a)});
+const L=[...o.values()].sort(()=>Math.random()-.5);
+$('#g1').innerHTML=`<p class="ex">suman ${mn(s)} y multiplican ${mn(p)}</p><div class="opts">${L.map(a=>`<button onclick="a1(this,${a[0]},${a[1]},${s},${p})">${mn(a[0])} y ${mn(a[1])}</button>`).join('')}</div><p id="m1">Racha: ${streak}</p>`}
+function a1(b,u,v,s,p){if(u+v===s&&u*v===p){streak++;$('#m1').innerHTML=`<span class="ok">¡Sí! ${mn(u)} + ${mn(v)} = ${mn(s)} y ${mn(u)}·${mn(v)} = ${mn(p)}.</span> Racha: ${streak} <button class="p" onclick="g1()">Siguiente</button>`}else{b.disabled=true;streak=0;$('#m1').innerHTML=`<span class="bad">${mn(u)} + ${mn(v)} = ${mn(u+v)} y ${mn(u)}·${mn(v)} = ${mn(u*v)}. No cumple las dos. Prueba otra.</span>`}}
+function g2(){const i=ri(0,4);gm=S[i];const q=gm.g();$('#g2').innerHTML=`<p class="ex">${q.q}</p><div class="opts">${S.slice(0,5).map((s,j)=>`<button onclick="a2(this,${j},${i})">${s.t}</button>`).join('')}</div><p id="m2"></p><div id="a2" hidden>${q.ans}</div>`}
+function a2(b,j,i){if(j===i){$('#m2').innerHTML=`<span class="ok">¡Correcto!</span> Queda: ${$('#a2').innerHTML} <button class="p" onclick="g2()">Siguiente</button>`}else{b.disabled=true;$('#m2').innerHTML='<span class="bad">Todavía no. Fíjate en cuántos términos tiene y si hay cuadrados. Prueba otra opción.</span>'}}
+
+function exam(){tab('e');$('#app').innerHTML=`<div class="card"><h3>Rutina para el examen</h3><ol><li>Respira antes de empezar (botón de abajo).</li><li><b>Primera vuelta:</b> contesta lo que ya sabes. Marca con ? lo que dudes y sigue.</li><li><b>Pausa de 30 segundos</b> al llegar a la mitad (reactivo 20): estira los hombros y toma agua.</li><li><b>Segunda vuelta:</b> regresa a las marcadas. Si hay factorización, comprueba multiplicando.</li><li>Antes de entregar, pasa por <b>todas las páginas</b>, incluida la última.</li></ol><p>Meta del siguiente simulacro: <b>24 aciertos</b> (6.0). Después, subimos poco a poco.</p></div><div class="card"><h3>Pausa de 1 minuto</h3><div class="br" id="br" aria-live="polite">Listo</div><div class="row"><button class="p" onclick="breathe()">Empezar</button></div></div>`}
+function lab(){tab('l');$('#app').innerHTML=`<p>Mueve los controles: el rectángulo se arma solo y el trinomio cambia. Así se ve por qué funciona «suma y producto».</p><div class="card"><label>m = <b id="lm">3</b><input type="range" min="1" max="9" value="3" id="sm" oninput="lv()"></label><label>n = <b id="ln">4</b><input type="range" min="1" max="9" value="4" id="sn" oninput="lv()"></label><div id="lvz"></div></div><p>Ahora las ecuaciones: mueve las soluciones y mira cómo cambia la curva.</p><div class="card"><label>Una solución = <b id="la">2</b><input type="range" min="-8" max="8" value="2" id="sa" oninput="lp()"></label><label>Otra solución = <b id="lb">-3</b><input type="range" min="-8" max="8" value="-3" id="sb" oninput="lp()"></label><div id="lpz"></div></div>`;lv();lp()}
+function lp(){const a=+$('#sa').value,b=+$('#sb').value,B=-(a+b),C=a*b;$('#la').textContent=a;$('#lb').textContent=b;$('#lpz').innerHTML=parab(a,b)+`<p class="ex">(x ${a<0?'+':'−'} ${Math.abs(a)})(x ${b<0?'+':'−'} ${Math.abs(b)}) = 0<br>${poly([[1,2],[B,1],[C,0]])} = 0</p>`}
+function lv(){const m=+$('#sm').value,n=+$('#sn').value,X=90,U=14,W=X+m*U,H=X+n*U;$('#lm').textContent=m;$('#ln').textContent=n;
+$('#lvz').innerHTML=`<svg viewBox="-4 -4 ${W+8} ${H+8}" style="width:100%;max-width:340px;display:block;margin:auto" role="img" aria-label="Rectángulo de lados x+${m} y x+${n}"><rect class="s1" x="0" y="0" width="${X}" height="${X}"/><rect class="s2" x="${X}" y="0" width="${m*U}" height="${X}"/><rect class="s2" x="0" y="${X}" width="${X}" height="${n*U}"/><rect class="s3" x="${X}" y="${X}" width="${m*U}" height="${n*U}"/><text x="${X/2}" y="${X/2}">x²</text><text x="${X+m*U/2}" y="${X/2}">${m}x</text><text x="${X/2}" y="${X+n*U/2}">${n}x</text><text x="${X+m*U/2}" y="${X+n*U/2}">${m*n}</text></svg><p class="ex">Lados: (x + ${m}) y (x + ${n})<br>Área = x² + ${m}x + ${n}x + ${m*n}<br>= x² + ${m+n}x + ${m*n}</p><p><b>Factorizar</b> es el camino de regreso: de x² + ${m+n}x + ${m*n} buscas dos números que sumen ${m+n} y multipliquen ${m*n}: son ${m} y ${n}.</p>`}
+const PARTS={c:['Coeficiente','El número que multiplica a la letra. En 3x², el coeficiente es 3.'],v:['Variable','La letra: el valor que no conocemos (x).'],e:['Exponente','El número chiquito arriba: cuántas veces se multiplica x por sí misma.'],s:['Signo','Va pegado al término que sigue. Si es −, ese término es negativo.'],k:['Término independiente','El número solo, sin letra.']};
+function anat(a,b,c){return '<div class="ex">'+[[a,2],[b,1],[c,0]].map(([k,p],i)=>{const ng=k<0,ab=Math.abs(k);let h=(i||ng)?`<button class="pt p-s" data-p="s">${ng?'−':'+'}</button>`:'';if(!p)h+=`<button class="pt p-k" data-p="k">${ab}</button>`;else h+=(ab===1?'':`<button class="pt p-c" data-p="c">${ab}</button>`)+`<button class="pt p-v" data-p="v">x</button>`+(p>1?`<button class="pt p-e" data-p="e">${p}</button>`:'');return `<span class="tm"><span>${h}</span><small>término ${i+1}</small></span>`}).join('')+'</div>'}
+function idg(){const a=pick([1,2,3,4,5,6,7]),b=pick([-9,-7,-5,-4,-3,-2,2,3,4,5,6,8]),c=pick([-8,-6,-5,-4,-3,-2,-1,1,2,3,5,7,9]);
+const nm=v=>{const s=new Set([v]);[a,b,c,-v].forEach(z=>s.size<4&&s.add(z));let i=1;while(s.size<4)s.add(v+i++);return[...s]};
+const q=pick([['el coeficiente de x²',a,nm(a)],['el coeficiente de x',b,nm(b)],['el término independiente',c,nm(c)],['el grado (el exponente más grande)',2,[1,2,3,4]],['cuántos términos tiene',3,[1,2,3,4]],['cómo se llama este polinomio','Trinomio',['Monomio','Binomio','Trinomio','Factor']]]);
+$('#idg').innerHTML=anat(a,b,c)+`<p>Elige: <b>${q[0]}</b></p><div class="opts">${q[2].sort(()=>Math.random()-.5).map(o=>`<button onclick="aid(this,'${mn(o)}','${mn(q[1])}')">${mn(o)}</button>`).join('')}</div><p id="mi"></p>`}
+function aid(b,v,c){if(v===c)$('#mi').innerHTML='<span class="ok">¡Correcto!</span> <button class="p" onclick="idg()">Siguiente</button>';else{b.disabled=true;$('#mi').innerHTML='<span class="bad">Todavía no. Fijáte en los colores y en el signo. Prueba otra.</span>'}}
+function flow(){let m,n;do{m=ri(-7,7);n=ri(-7,7)}while(!m||!n||m===n||m+n===0);const B=m+n,C=m*n,bx=(t,h)=>`<div class="fb"><b>${t}</b><div>${h}</div></div>`,ar='<div class="ar">▼</div>';
+return bx('1 · Lee la expresión',`<span class="ex">${poly([[1,2],[B,1],[C,0]])}</span><br>Es un trinomio con a = 1.`)+ar+bx('2 · Haz la pregunta clave',`<span class="chip c1">suman ${mn(B)}</span> <span class="chip c2">multiplican ${mn(C)}</span>`)+ar+bx('3 · Encuentra la pareja',`<span class="chip c1">${mn(m)}</span> y <span class="chip c1">${mn(n)}</span><br>${mn(m)} + ${mn(n)} = ${mn(B)} ✔<br>${mn(m)} · ${mn(n)} = ${mn(C)} ✔`)+ar+bx('4 · Escribe los factores',`<span class="ex">(x ${m<0?'−':'+'} ${Math.abs(m)})(x ${n<0?'−':'+'} ${Math.abs(n)})</span>`)+ar+bx('5 · Comprueba con la tabla',grid(1,m,1,n))}
+function parts(){tab('p');$('#app').innerHTML=`<p>Toca cada parte para ver su nombre. Cada color es un tipo de parte.</p><div class="card"><h3>Partes de un trinomio</h3>${anat(3,-5,2)}<div class="row lg">${Object.keys(PARTS).map(k=>`<span class="pt p-${k}" data-p="${k}">${PARTS[k][0]}</span>`).join('')}</div><p id="pinfo" class="ex">Toca una parte 👆</p><p>Tiene <b>3 términos</b>, por eso es un <b>trinomio</b> (2 términos: binomio; 1: monomio). Su <b>grado</b> es 2, el exponente más grande.</p></div><div class="card"><h3>Partes de una factorización</h3><div class="ex"><span class="tm"><span>(2x + 3)</span><small>factor 1 (binomio)</small></span><span class="tm"><span>(x − 4)</span><small>factor 2 (binomio)</small></span></div><p>Al multiplicar los factores sale el <b>producto</b> (el trinomio). Factorizar es el camino de regreso.</p></div><div class="card"><h3>Reto: identifica las partes</h3><div id="idg"></div></div><div class="card"><h3>Ejercicio resuelto, en imágenes</h3><div id="flw"></div><div class="row"><button onclick="$('#flw').innerHTML=flow()">🔄 Otro ejemplo</button><button class="p" onclick="openSt(3)">Practicar esta estación</button></div></div>`;idg();$('#flw').innerHTML=flow();$('#app').onclick=e=>{const b=e.target.closest('.pt'),i=$('#pinfo');if(!b||!i||!b.dataset.p)return;const d=PARTS[b.dataset.p];i.innerHTML='<b>'+d[0]+':</b> '+d[1]}}
+const fr=(n,d)=>{const g=gcd(n,d)||1;n/=g;d/=g;if(d<0){n=-n;d=-d}return d===1?mn(n):`${mn(n)}/${d}`},lcm=(a,b)=>a*b/gcd(a,b),sg=n=>n<0?'−':'+',nz=(a,b)=>{let v=0;while(!v)v=ri(a,b);return v};
+const pf=n=>{const c={};let m=n,k=2;while(m>1){while(m%k===0){c[k]=(c[k]||0)+1;m/=k}k++}return Object.entries(c).map(([b,e])=>b+(e>1?sup(e):'')).join('·')};
+const S1=(sol,q,ans,steps,x)=>({type:'sol',sol,q,ans,steps,tip:'Un paso a la vez.',ask:'Escribe el resultado:',ph:'Un número',...x});
+const nl=a=>{const X=v=>150+v*13;return `<svg viewBox="0 0 300 60" style="width:100%;max-width:340px;display:block;margin:auto" role="img" aria-label="Recta numérica"><line x1="10" y1="30" x2="290" y2="30" stroke="var(--mut)"/>${[-10,-5,0,5,10].map(t=>`<text x="${X(t)}" y="52">${t}</text>`).join('')}<line x1="${X(0)}" y1="30" x2="${X(a)}" y2="30" stroke="var(--bad)" stroke-width="5"/><circle cx="${X(a)}" cy="30" r="6" fill="var(--acc)"/><text x="${X(a)}" y="14">${a}</text></svg><small>Distancia de ${a} al cero = ${Math.abs(a)}</small>`};
+const lin=(m,b)=>{const X=x=>150+x*20,Y=y=>110-y*10;return `<svg viewBox="0 0 300 220" style="width:100%;max-width:340px;display:block;margin:auto" role="img" aria-label="Recta y = ${m}x + ${b}"><line x1="0" y1="110" x2="300" y2="110" stroke="var(--mut)"/><line x1="150" y1="0" x2="150" y2="220" stroke="var(--mut)"/><line x1="${X(-7)}" y1="${Y(-7*m+b)}" x2="${X(7)}" y2="${Y(7*m+b)}" stroke="var(--acc)" stroke-width="3"/><circle cx="150" cy="${Y(b)}" r="6" fill="var(--bad)"/><text x="172" y="${Y(b)}">${b}</text></svg><small>El punto rojo es donde la recta cruza el eje y (el valor de b).</small>`};
+function gABS(){const a=nz(-9,9),b=nz(-9,9),o=pick(['+','−']),A=Math.abs(a),B=Math.abs(b),v=o==='+'?A+B:A-B;return S1([v],`|${mn(a)}| ${o} |${mn(b)}|`,mn(v),[`El valor absoluto es la distancia al cero, por eso siempre es positivo: |${mn(a)}| = ${A}.`,`|${mn(b)}| = ${B}.`,`Ahora opera: ${A} ${o} ${B} = <b>${mn(v)}</b>.`],{vis:nl(a)})}
+function gSG(){const a=nz(-9,9),b=nz(-9,9),t=ri(0,3),A=Math.abs(a),B=Math.abs(b);
+if(t===0)return S1([a+b],`(${mn(a)}) + (${mn(b)})`,mn(a+b),[Math.sign(a)===Math.sign(b)?`Mismo signo: suma los valores absolutos (${A} + ${B} = ${A+B}) y conserva el signo.`:`Signos distintos: resta los valores absolutos (${Math.max(A,B)} − ${Math.min(A,B)}) y pon el signo del que tiene mayor valor absoluto.`,`Resultado: <b>${mn(a+b)}</b>.`]);
+if(t===1)return S1([a-b],`(${mn(a)}) − (${mn(b)})`,mn(a-b),[`Restar es sumar el opuesto: (${mn(a)}) + (${mn(-b)}).`,`Ahora aplica la regla de la suma: <b>${mn(a-b)}</b>.`]);
+if(t===2)return S1([a*b],`(${mn(a)})(${mn(b)})`,mn(a*b),[`Multiplica los números: ${A}·${B} = ${A*B}.`,`Ley de signos: ${Math.sign(a)===Math.sign(b)?'signos iguales dan +':'signos distintos dan −'}. Resultado: <b>${mn(a*b)}</b>.`]);
+return S1([a],`(${mn(a*b)}) ÷ (${mn(b)})`,mn(a),[`Divide los números: ${A*B} ÷ ${B} = ${A}.`,`Ley de signos: ${Math.sign(a*b)===Math.sign(b)?'signos iguales dan +':'signos distintos dan −'}. Resultado: <b>${mn(a)}</b>.`])}
+function gPOT(){const t=ri(0,2);let m=ri(2,6),n=ri(2,5),q,v,s;
+if(t===0){q=`x${sup(m)} · x${sup(n)}`;v=m+n;s=['Misma base: en un producto se <b>suman</b> los exponentes.',`${m} + ${n} = <b>${v}</b>.`]}
+else if(t===1){m=ri(n+1,9);q=`x${sup(m)} ÷ x${sup(n)}`;v=m-n;s=['Misma base: en un cociente se <b>restan</b> los exponentes.',`${m} − ${n} = <b>${v}</b>.`]}
+else{q=`(x${sup(m)})${sup(n)}`;v=m*n;s=['Potencia de una potencia: se <b>multiplican</b> los exponentes.',`${m} · ${n} = <b>${v}</b>.`]}
+return S1([v],q,`x${sup(v)}`,s,{ask:'Simplifica. Escribe solo el exponente final de x:'})}
+function gRAD(){const t=ri(0,2),k=ri(2,9);
+if(t===0)return S1([k],`√${k*k}`,k,[`Busca el número que multiplicado por sí mismo da ${k*k}.`,`${k}·${k} = ${k*k}, entonces √${k*k} = <b>${k}</b>.`]);
+if(t===1)return S1([k],`∛${k**3}`,k,[`Busca el número que multiplicado tres veces por sí mismo da ${k**3}.`,`${k}·${k}·${k} = ${k**3}, entonces ∛${k**3} = <b>${k}</b>.`]);
+const D=[];for(let d=2;d<k*k;d++)if(k*k%d===0)D.push(d);if(!D.length)return gRAD();const d=pick(D),e=k*k/d;
+return S1([k],`√${d} · √${e}`,k,[`Con raíces del mismo índice se multiplican los números de adentro: √(${d}·${e}).`,`${d}·${e} = ${k*k}.`,`√${k*k} = <b>${k}</b>.`])}
+function gFRA(){let d1,d2;do{d1=ri(2,6);d2=ri(2,6)}while(d1===d2);const n1=ri(1,d1-1),n2=ri(1,d2-1),o=pick(['+','−']),L=lcm(d1,d2),a=n1*L/d1,b=n2*L/d2,num=o==='+'?a+b:a-b;
+return S1([num/L],`${n1}/${d1} ${o} ${n2}/${d2}`,fr(num,L),[`Busca el denominador común: MCM(${d1}, ${d2}) = <b>${L}</b>.`,`Convierte cada fracción: ${a}/${L} ${o} ${b}/${L}.`,`Opera los numeradores: ${a} ${o} ${b} = ${mn(num)}, o sea ${mn(num)}/${L}.`,`Simplifica: <b>${fr(num,L)}</b>.`],{ph:'Ej: 7/12 (o un entero)'})}
+function gFRM(){const d1=ri(2,7),d2=ri(2,7),n1=ri(1,d1+2),n2=ri(1,d2+2),dv=Math.random()<.5;
+return dv?S1([n1*d2/(d1*n2)],`${n1}/${d1} ÷ ${n2}/${d2}`,fr(n1*d2,d1*n2),[`Dividir es multiplicar por la fracción volteada: ${n1}/${d1} · ${d2}/${n2}.`,`Arriba por arriba y abajo por abajo: ${n1*d2}/${d1*n2}.`,`Simplifica: <b>${fr(n1*d2,d1*n2)}</b>.`],{ph:'Ej: 7/12'}):S1([n1*n2/(d1*d2)],`${n1}/${d1} · ${n2}/${d2}`,fr(n1*n2,d1*d2),[`Arriba por arriba: ${n1}·${n2} = ${n1*n2}.`,`Abajo por abajo: ${d1}·${d2} = ${d1*d2}.`,`Simplifica ${n1*n2}/${d1*d2}: <b>${fr(n1*n2,d1*d2)}</b>.`],{ph:'Ej: 7/12'})}
+function gMCD(){let g,p,q;do{g=ri(2,6);p=ri(2,7);q=ri(2,7)}while(p===q||gcd(p,q)!==1);const a=g*p,b=g*q,L=g*p*q;
+return S1([g,L],`${a} y ${b}`,`MCD = ${g}, MCM = ${L}`,[`Descompón en factores primos: ${a} = ${pf(a)} y ${b} = ${pf(b)}.`,`<b>MCD</b>: solo los factores comunes, con el menor exponente → <b>${g}</b>.`,`<b>MCM</b>: todos los factores, con el mayor exponente. También: (${a}·${b}) ÷ ${g} = <b>${L}</b>.`],{ord:1,ask:'Escribe el MCD y el MCM (en ese orden), separados por coma:',ph:'Ej: 6, 36'})}
+function gLIN(h){const x=nz(-9,9);if(!h){const a=ri(2,9),b=nz(-9,9),c=a*x+b;return S1([x],`${poly([[a,1],[b,0]])} = ${mn(c)}`,`x = ${mn(x)}`,[`Quita ${mn(b)} de ese lado: haz lo contrario (${b<0?'suma':'resta'} ${Math.abs(b)}) en <b>los dos</b> lados.`,`Queda ${poly([[a,1]])} = ${mn(c-b)}.`,`Divide entre ${a}: x = <b>${mn(x)}</b>.`],{ask:'Resuelve. ¿Cuánto vale x?'})}
+const a=ri(3,9),c=ri(1,a-1),b=nz(-9,9),d=b+(a-c)*x;return S1([x],`${poly([[a,1],[b,0]])} = ${poly([[c,1],[d,0]])}`,`x = ${mn(x)}`,[`Junta las x de un lado: resta ${poly([[c,1]])} en los dos lados → ${poly([[a-c,1],[b,0]])} = ${mn(d)}.`,`Pasa el número: ${poly([[a-c,1]])} = ${mn(d-b)}.`,`Divide entre ${a-c}: x = <b>${mn(x)}</b>.`],{ask:'Resuelve. ¿Cuánto vale x?'})}
+function gPROP(){const n1=ri(2,6),u=ri(4,25),n2=ri(n1+1,12),c=n1*u;return S1([u*n2],`Si ${n1} cuadernos cuestan $${c}, ¿cuánto cuestan ${n2}?`,`$${u*n2}`,[`Arma la proporción: ${n1}/${c} = ${n2}/x.`,`Multiplica en cruz: ${n1}·x = ${c}·${n2} = ${c*n2}.`,`Divide entre ${n1}: x = <b>${u*n2}</b>. Cuestan $${u*n2}.`],{ask:'Escribe el costo en pesos (solo el número):'})}
+function gALG(){if(Math.random()<.5){const k=ri(2,4),b=ri(1,9),x=ri(1,9),w=['','','El doble','El triple','El cuádruple'][k];return S1([x],`${w} de un número, más ${b}, es ${k*x+b}.`,`El número es ${x}`,[`Llama x al número. ${w} → ${k}x. Queda: ${k}x + ${b} = ${k*x+b}.`,`Resta ${b} en los dos lados: ${k}x = ${k*x}.`,`Divide entre ${k}: x = <b>${x}</b>.`],{ask:'¿Cuál es el número?'})}
+const k=ri(2,5),m=ri(1,6),c=nz(-6,6),t=ri(2,5),v=k*t*t-m*t+c;return S1([v],`Si x = ${t}, ¿cuánto vale ${poly([[k,2],[-m,1],[c,0]])}?`,mn(v),[`Sustituye x por ${t}: ${k}(${t})² − ${m}(${t}) ${sg(c)} ${Math.abs(c)}.`,`Primero la potencia: ${t}² = ${t*t}.`,`Luego multiplica: ${k}·${t*t} = ${k*t*t} y ${m}·${t} = ${m*t}.`,`Suma y resta: ${k*t*t} − ${m*t} ${sg(c)} ${Math.abs(c)} = <b>${mn(v)}</b>.`])}
+function gPOL(){const t=ri(0,2),c3=()=>[nz(-5,5),nz(-5,5),nz(-5,5)],A=c3(),B=c3(),T=c=>[[c[0],2],[c[1],1],[c[2],0]],ev=(c,x)=>c[0]*x*x+c[1]*x+c[2],ask='Escribe el resultado reducido (usa x^2 para x²):',ph='Ej: 3x^2-2x+5';
+if(t<2){const s=t?-1:1,R=A.map((v,i)=>v+s*B[i]);return{type:'poly',f:x=>ev(A,x)+s*ev(B,x),q:`(${poly(T(A))}) ${t?'−':'+'} (${poly(T(B))})`,ans:poly(T(R))||'0',tip:'Solo se juntan términos semejantes.',ask,ph,steps:[t?`Cambia el signo de <b>todos</b> los términos del segundo paréntesis: ${poly(T(B.map(v=>-v)))}.`:'Quita los paréntesis; ningún signo cambia.','Agrupa los términos semejantes (misma letra y mismo exponente).',`Suma los coeficientes: <b>${poly(T(R))||'0'}</b>.`]}}
+const p=ri(1,4),r=ri(1,3),q=nz(-6,6),s=nz(-6,6),a=p*r,b=p*s+q*r,c=q*s;return{type:'poly',f:x=>(p*x+q)*(r*x+s),q:`${bin(p,q)}${bin(r,s)}`,ans:poly([[a,2],[b,1],[c,0]]),tip:'Cada término por cada término.',ask,ph,steps:[`Multiplica cada término del primer binomio por cada término del segundo: ${poly([[a,2]])}, ${poly([[p*s,1]])}, ${poly([[q*r,1]])} y ${mn(c)}.`,`Reduce los semejantes: ${poly([[p*s,1]])} y ${poly([[q*r,1]])} dan ${poly([[b,1]])||'0'}.`,`Resultado: <b>${poly([[a,2],[b,1],[c,0]])}</b>.`]}}
+function gSIS(){let x=nz(-5,5),y=nz(-5,5),a,c1,c2;do{a=pick([-3,-2,-1,1,2,3]);c1=ri(2,5);c2=ri(2,5)}while(c1+c2*a===0);const b=y-a*x,d=c1*x+c2*y,e=poly([[a,1],[b,0]]);
+return S1([x,y],`y = ${e}<br>${c1}x + ${c2}y = ${mn(d)}`,`x = ${mn(x)}, y = ${mn(y)}`,[`Sustituye la y de la primera ecuación en la segunda: ${c1}x + ${c2}(${e}) = ${mn(d)}.`,`Reduce: ${poly([[c1+c2*a,1],[c2*b,0]])} = ${mn(d)}.`,`Despeja x: ${poly([[c1+c2*a,1]])} = ${mn(d-c2*b)} → <b>x = ${mn(x)}</b>.`,`Sustituye en la primera: y = ${a}(${mn(x)}) ${sg(b)} ${Math.abs(b)} → <b>y = ${mn(y)}</b>.`],{ord:1,ask:'Escribe x, y (en ese orden) separados por coma:',ph:'Ej: 2, -1'})}
+function gGRA(){const m=pick([-3,-2,-1,1,2,3]),b=nz(-5,5),k=ri(1,4);return S1([m*k+b],`y = ${poly([[m,1],[b,0]])}`,`y = ${mn(m*k+b)}`,[`Sustituye x = ${k}: y = ${m}(${k}) ${sg(b)} ${Math.abs(b)}.`,`Multiplica: ${m*k}.`,`Suma: <b>${mn(m*k+b)}</b>. El punto es (${k}, ${mn(m*k+b)}).`],{ask:`¿Cuánto vale y cuando x = ${k}?`,vis:lin(m,b)})}
+function gFG(){let p,q,r,s;const N=[-6,-5,-4,-3,-2,-1,1,2,3,4,5,6];do{p=ri(1,3);r=ri(1,3);q=pick(N);s=pick(N)}while(p*r<2||gcd(p,q)!==1||gcd(r,s)!==1);const A=p*r,B=p*s+q*r,C=q*s,sd=Math.abs(p*s-q*r),D=B*B-4*A*C;
+return S1([-q/p,-s/r],`${poly([[A,2],[B,1],[C,0]])} = 0`,`x = ${fr(-q,p)} y x = ${fr(-s,r)}`,[`Identifica: a = ${A}, b = ${mn(B)}, c = ${mn(C)}.`,`Discriminante: b² − 4ac = ${B*B} − 4(${A})(${mn(C)}) = <b>${D}</b>.`,`Raíz: √${D} = ${sd}.`,`Sustituye: x = (${mn(-B)} ± ${sd}) ÷ ${2*A}.`,`Los dos valores: <b>x = ${fr(-B+sd,2*A)}</b> y <b>x = ${fr(-B-sd,2*A)}</b>.`],{ask:'Escribe las dos soluciones separadas por coma (fracciones como 3/2):',ph:'Ej: 3, -3/2'})}
+function gCC(){let h,t;do{h=nz(-6,6);t=ri(1,6)}while(t===Math.abs(h));const b=2*h,c=h*h-t*t;
+return S1([-h+t,-h-t],`${poly([[1,2],[b,1],[c,0]])} = 0`,`x = ${mn(-h+t)} y x = ${mn(-h-t)}`,[`Pasa la constante al otro lado: ${poly([[1,2],[b,1]])} = ${mn(-c)}.`,`Suma (b/2)² = (${mn(h)})² = ${h*h} en los dos lados: ${poly([[1,2],[b,1],[h*h,0]])} = ${t*t}.`,`El lado izquierdo es un trinomio cuadrado perfecto: (x ${sg(h)} ${Math.abs(h)})² = ${t*t}.`,`Saca raíz a los dos lados: x ${sg(h)} ${Math.abs(h)} = ±${t}.`,`Despeja: <b>x = ${mn(-h+t)}</b> y <b>x = ${mn(-h-t)}</b>.`],{ask:'Resuelve. Escribe las dos soluciones separadas por coma:',ph:'Ej: 3, -5'})}
+S.push(
+{id:'abs',t:'Valor absoluto',pg:'pp. 27-31, 40',g:gABS,o:1,idea:'El valor absoluto es la distancia al cero: siempre es positivo. |−5| = 5 y |5| = 5.'},
+{id:'sg',t:'Operaciones con signos',pg:'pp. 22-43',g:gSG,o:2,idea:'Suma: mismo signo se suma y se conserva; distinto signo se resta y gana el mayor. Multiplicar y dividir: signos iguales dan +, distintos dan −.'},
+{id:'pot',t:'Potencias y exponentes',pg:'pp. 44-49',g:gPOT,o:3,idea:'Producto de potencias: se suman exponentes. Cociente: se restan. Potencia de potencia: se multiplican.'},
+{id:'rad',t:'Raíces',pg:'pp. 50-52',g:gRAD,o:4,idea:'La raíz es lo contrario de la potencia: √25 = 5 porque 5² = 25.'},
+{id:'fra',t:'Suma y resta de fracciones',pg:'pp. 53-55',g:gFRA,o:10,idea:'Para sumar o restar fracciones, primero busca denominador común (el MCM).'},
+{id:'frm',t:'Multiplicar y dividir fracciones',pg:'pp. 55-58',g:gFRM,o:11,idea:'Multiplicar: arriba por arriba y abajo por abajo. Dividir: voltea la segunda fracción y multiplica.'},
+{id:'mcd',t:'MCM y MCD',pg:'pp. 62-77',g:gMCD,o:20,idea:'MCD: el mayor número que divide a ambos. MCM: el menor número que ambos dividen. Se sacan con factores primos.'},
+{id:'ec1',t:'Ecuaciones: la balanza',pg:'pp. 78-83',g:()=>gLIN(0),o:30,idea:'Una ecuación es una balanza: lo que haces de un lado, lo haces del otro.'},
+{id:'prop',t:'Razones y proporciones',pg:'pp. 84-95',g:gPROP,o:31,idea:'Una proporción es una igualdad de dos razones: a/b = c/d. Se resuelve multiplicando en cruz.'},
+{id:'alg',t:'Lenguaje algebraico',pg:'pp. 100-110',g:gALG,o:40,idea:'Traduce las palabras a símbolos: «el doble de un número» es 2x.'},
+{id:'pol',t:'Operaciones con polinomios',pg:'pp. 111-114',g:gPOL,o:41,idea:'Sumar: junta términos semejantes. Restar: cambia los signos del segundo. Multiplicar: cada término por cada término.'},
+{id:'lin2',t:'Ecuaciones lineales',pg:'pp. 119-130',g:()=>gLIN(1),o:42,idea:'Junta las x de un lado y los números del otro; después despeja.'},
+{id:'gra',t:'Gráficas de rectas',pg:'pp. 131-134',g:gGRA,o:43,idea:'La gráfica de y = mx + b es una recta. b es donde cruza el eje y; m dice qué tan inclinada va.'},
+{id:'sis',t:'Sistemas de ecuaciones',pg:'pp. 135-143',g:gSIS,o:44,idea:'Método de sustitución: cambia una letra por su valor en la otra ecuación y resuelve.'},
+{id:'fg',t:'Fórmula general',pg:'pp. 163-168',g:gFG,o:61,idea:'Para ax² + bx + c = 0: x = (−b ± √(b² − 4ac)) ÷ 2a. Siempre funciona.'},
+{id:'cc',t:'Completar el cuadrado',pg:'pp. 169-176',g:gCC,o:62,idea:'Pasa la constante, suma (b/2)² en los dos lados, factoriza como cuadrado y saca raíz.'});
+[['fc',50],['ds',51],['tcp',52],['t1',53],['t2',54],['eq',60],['app',63]].forEach(([id,o])=>S.find(s=>s.id===id).o=o);
+const UL=o=>o<10?'Unidad 1 · Números reales':o<20?'Unidad 1 · Fracciones':o<30?'Unidad 1 · Divisibilidad':o<40?'Unidad 1 · Ecuaciones y proporciones':o<50?'Unidad 2 · Lenguaje algebraico y sistemas':o<60?'Unidad 2 · Factorización':'Unidad 2 · Ecuaciones cuadráticas';
+S.forEach(s=>s.u=UL(s.o));
+function home(){tab('r');let u='',n=0;$('#app').innerHTML=`<p>Hola, Pao. Elige una estación. Si no sabes por dónde, empieza por <b>Factor común</b> (donde más puntos se fueron) o recorre la lista de arriba hacia abajo. En cada una: <b>idea corta → ejemplo paso a paso → práctica</b>. Con 3 aciertos ganas ★★★.</p>`+S.map((s,i)=>[s,i]).sort((x,y)=>x[0].o-y[0].o).map(([s,i])=>{const h=s.u!==u?`<h3>${u=s.u}</h3>`:'';return h+`<button class="st" onclick="openSt(${i})"><span><b>${++n}. ${s.t}</b><small>Libro ${s.pg}</small></span><span class="stars">${star(s.id)}</span></button>`}).join('')+`<div class="card"><h3>Resumen de los 5 tipos de factorización</h3><table><tr><td>Factor común</td><td>ax + ay = a(x + y)</td></tr><tr><td>Diferencia de cuadrados</td><td>x² − y² = (x + y)(x − y)</td></tr><tr><td>Trinomio cuadrado perfecto</td><td>x² ± 2xy + y² = (x ± y)²</td></tr><tr><td>x² + bx + c</td><td>(x + n)(x + m)</td></tr><tr><td>ax² + bx + c</td><td>(mx + n)(px + q)</td></tr></table></div>`}
+let bt;function breathe(){clearInterval(bt);const e=$('#br');let t=0;e.classList.add('go');const f=()=>{e.textContent=t>=60?'Listo':(Math.floor(t/4)%2?'Suelta el aire':'Inhala');if(t>=60){clearInterval(bt);e.classList.remove('go')}t+=4};f();bt=setInterval(f,4000)}
+home();
+</script></body></html>
